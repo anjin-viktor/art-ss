@@ -1,0 +1,9 @@
+FILES_CATCHING = main.cpp Bigbool.cpp ResourceSettings.cpp Manager.cpp catch.cpp
+FILES_TESTER = Tester.cpp mainTester.cpp Bigbool.cpp
+TARGET_NAME_TESTER = tester
+TARGET_NAME_CATCHING = catching
+all:	${FILES_CATCHING} ${FILES_TESTER}
+	g++ -o ${TARGET_NAME_CATCHING} ${FILES_CATCHING}
+	g++ -o ${TARGET_NAME_TESTER} ${FILES_TESTER}
+clear: 
+	rm *.o

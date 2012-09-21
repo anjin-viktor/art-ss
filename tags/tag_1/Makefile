@@ -1,0 +1,24 @@
+<<<<<<< .mine
+FILES = bigbool.c
+all:
+	gcc -o main main.c bigbool.c
+clear:
+	rm -f *.o
+=======
+.PHONY: all clean
+
+FILES_CATCHING = main.cpp Bigbool.cpp ResourceSettings.cpp Manager.cpp catch.cpp
+FILES_TESTER = Tester.cpp mainTester.cpp Bigbool.cpp
+TARGET_NAME_TESTER = tester
+TARGET_NAME_CATCHING = catching
+RUNTIME_CHECK_FILE = check_file
+RUNTIME_TEST_FILE = test_file
+
+all:	${FILES_CATCHING} ${FILES_TESTER}
+	g++ -o ${TARGET_NAME_CATCHING} ${FILES_CATCHING}
+	g++ -o ${TARGET_NAME_TESTER} ${FILES_TESTER}
+
+clean:
+	rm -f ${TARGET_NAME_CATCHING} ${TARGET_NAME_TESTER} ${RUNTIME_CHECK_FILE} \
+${RUNTIME_TEST_FILE}
+>>>>>>> .r4

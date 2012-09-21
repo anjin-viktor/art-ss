@@ -1,0 +1,15 @@
+Import ('env OS')
+
+env.Library('bigbool.c', CPPPATH = '/usr/include/libxml2')
+env.Library('resource.c', CPPPATH = '/usr/include/libxml2')
+env.Library('manager.c', CPPPATH = '/usr/include/libxml2')
+env.Library('launcher.c', CPPPATH = '/usr/include/libxml2')
+env.Library('tester.c', CPPPATH = '/usr/include/libxml2')
+
+env.Program('sst.c', CPPPATH = '/usr/include/libxml2', LIBPATH = "#/" ,LIBS = Split('tester xml2 manager launcher resource bigbool create_lib'))
+
+if OS == 'freebsd':
+    env.Library('create_lib.c', CPPPATH = Split('/usr/local/include/libxml2 \
+        /usr/local/include'))
+elif OS == 'linux':
+    env.Library('create_lib.c', CPPPATH = '/usr/include/libxml2')

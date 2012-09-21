@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+Import ('env OS')
+
+env.Program('bigbool_test.c', CPPPATH = '#/', LIBPATH = '#/'
+    ,LIBS = 'bigbool')
+env.Program('resource_test.c', CPPPATH = '#/', LIBPATH = '#/'
+    ,LIBS = Split('resource bigbool'))
+
+
+env.Program('manager_test.c', CPPPATH = Split('/usr/include/libxml2 #/')
+    ,LIBPATH = Split('#/ /usr/lib')
+    ,LIBS = Split('resource manager bigbool xml2'))
+
+
+env.Program('launcher_test.c', CPPPATH = '/usr/include/libxml2', LIBPATH = '#/'
+    ,LIBS = Split('bigbool launcher pthread manager resource xml2'))
+env.Program('tester_test.c', CPPPATH = Split('/usr/include/libxml2 #/'), LIBPATH = '#/'
+    ,LIBS = Split('pthread tester launcher manager bigbool resource xml2'))
+
+
+env.Program('inf_loop.c', CPPPATH = '#/', LIBPATH = '#/')
+
+
+    
+
+if OS == 'freebsd':
+    env.Program('create_lib_test.c'
+    ,CPPPATH = Split('/usr/local/include/libxml2 /usr/local/include #/')
+    ,LIBPATH = Split('#/ /usr/local/lib')
+    ,LIBS = Split('create_lib xml2'))
+elif OS == 'linux':
+    env.Program('create_lib_test.c', CPPPATH = Split('/usr/include/libxml2 #/')
+    ,LIBPATH = Split('#/ /usr/lib')
+    ,LIBS = Split('create_lib xml2'))

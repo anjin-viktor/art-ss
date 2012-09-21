@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<settings>
+
+
+<tester_settings>
+    <number_of_process>1000</number_of_process>
+    <program_path>tests/print_argv</program_path>
+    <max_time_testing>1</max_time_testing>
+    <out_file>out_file</out_file>
+</tester_settings>
+
+
+<general_settings>
+    <resource_not_processed>permission</resource_not_processed> <!-- permission || refusal --> 
+    <action_if_over_vector>permission</action_if_over_vector> <!-- permission || refusaal -->
+    <behavior>rejection</behavior> <!-- rejection, handling, random_behavior, user_request -->
+</general_settings>
+
+
+<functions>
+    <function>
+	<name>fopen</name>
+	<parameters>
+	    <parameter>const char *</parameter>
+	    <parameter>const char *</parameter>
+	</parameters>
+	<type>FILE *</type>
+	<error_value>NULL</error_value> 
+    </function>
+
+
+    <function>
+	<name>open</name>
+	<parameters>
+	    <parameter>const char *</parameter>
+	    <parameter>int</parameter>
+	    <parameter>...</parameter>
+	</parameters>
+	<type>int</type>
+	<error_value>-1</error_value>
+	<max_arg_size>64</max_arg_size>
+    </function>
+
+
+    <function>
+	<name>malloc</name>
+	<parameters>
+	    <parameter>size_t</parameter>
+	</parameters>
+	<type>void *</type>
+	<error_value>NULL</error_value> 
+    </function>
+
+    <function>
+	<name>calloc</name>
+	<parameters>
+	    <parameter>size_t</parameter>
+	    <parameter>size_t</parameter>
+	</parameters>
+	<type>void *</type>
+	<error_value>NULL</error_value> 
+    </function>
+
+    <function>
+	<name>realloc</name>
+	<parameters>
+	    <parameter>void *</parameter>
+	    <parameter>size_t</parameter>
+	</parameters>
+	<type>void *</type> 
+	<error_value>NULL</error_value> 
+    </function>
+</functions>
+
+</settings>

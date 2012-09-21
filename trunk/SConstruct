@@ -1,0 +1,33 @@
+opts = Variables('custom.py')
+
+opts.Add('OS', 'Set to current OS: gnu/linux, freebsd, ...', 0)
+opts.Add('RELEASE', 'Set to 1 to build release', 0)
+opts.Add('STATIC', 'Set to 1 to build static executable', 0)
+opts.Add('ARCH', 'Set to target architecture', 'native')
+
+env = Environment(
+	variables = opts
+)
+
+Help(opts.GenerateHelpText(env))
+
+OS = ARGUMENTS.get('OS', 'linux')
+ARCH = ARGUMENTS.get('ARCH', 'native')
+RELEASE = ARGUMENTS.get('RELEASE', 0)
+STATIC = ARGUMENTS.get('STATIC', 0)
+
+if int(RELEASE):
+    env.Append(CCFLAGS = ' -O3 --omit-frame-pointer -pipe')
+    env.Append(CCFLAGS = ' -march=' + ARCH)
+else:
+    env.Append(CCFLAGS = '-g -ggdb -Wall -W -Wextra -Werror -O0 -ansi -pedantic -std=gnu99')
+
+if int(STATIC):
+    env.Append(LINKFLAGS = ' -static')
+
+Export('env OS')
+
+env.SConscript('tests/SConscript')
+env.SConscript('SConscript')
+
+SConsignFile("signatures");
